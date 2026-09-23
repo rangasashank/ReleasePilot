@@ -130,15 +130,9 @@ The local verification record, limitations, and exact measured gates are in [doc
 | `backend/app/webhooks` | Signed ingress, deduplication and freshness handling |
 | `frontend/app` | Workspace, setup, connections, runbooks and report screens |
 | `backend/tests`, `backend/evals` | Unit/integration/security tests and offline gates |
-| `infrastructure/aws` | Reviewed deployment template and deployment/teardown guide |
+| `infrastructure/aws` | CloudFormation template and template generator |
 
-## Portfolio and learning
+## Technical documentation
 
-- [Resume wording and demo script](docs/portfolio.md)
 - [Architecture decisions and operational limits](docs/architecture.md)
-- [Learning companion](docs/learning-companion.md)
-- [AWS deployment guide](infrastructure/aws/README.md)
-- [Step-by-step hosted showcase setup](docs/deploy-showcase.md)
-- [Original specification](ReleasePilot_Product_Specification.md)
-
-The earlier phase walkthroughs remain available for learning. The current code includes the later workflow; earlier “next phase” notes in those historical walkthroughs describe their original teaching sequence.
+- [Verification results](docs/verification.md)

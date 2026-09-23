@@ -14,3 +14,12 @@ coverage/
 .DS_Store
 .secrets/
 artifacts/
+
+# Local planning, learning, presentation, and deployment notes
+/ReleasePilot_Product_Specification.md
+/docs/deploy-showcase.md
+/docs/portfolio.md
+/docs/implementation-plan.md
+/docs/learning-companion.md
+/docs/phase-*-learning.md
+/infrastructure/aws/README.md
