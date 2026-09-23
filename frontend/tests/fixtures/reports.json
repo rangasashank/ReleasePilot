@@ -1,0 +1,613 @@
+{
+  "safe": {
+    "id": "82e8e615-3c31-520f-9fed-f1759f6acf05",
+    "release_candidate_id": "ebd624f6-d26c-5715-954b-50894c2bbe4f",
+    "service_name": "Checkout API",
+    "scenario": "safe",
+    "source_mode": "demo",
+    "state": "COMPLETED",
+    "base_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "head_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "created_at": "2026-09-06T00:00:00Z",
+    "decision": {
+      "policy_version": "readiness-v1",
+      "recommendation": "GO",
+      "risk_score": 0,
+      "confidence_score": 100,
+      "category_scores": {
+        "tests": 0,
+        "code_review": 0,
+        "complexity": 0,
+        "documentation": 0
+      },
+      "category_caps": {
+        "tests": 40,
+        "code_review": 25,
+        "complexity": 20,
+        "documentation": 15
+      },
+      "confidence_components": [
+        {
+          "category": "changes",
+          "weight": 25,
+          "earned": 25,
+          "reason": "Complete comparison collected."
+        },
+        {
+          "category": "reviews",
+          "weight": 20,
+          "earned": 20,
+          "reason": "PR/review collection complete."
+        },
+        {
+          "category": "ci",
+          "weight": 30,
+          "earned": 30,
+          "reason": "Required-check policy and target results collected."
+        },
+        {
+          "category": "runbooks",
+          "weight": 25,
+          "earned": 25,
+          "reason": "Relevant runbook excerpts retrieved."
+        }
+      ],
+      "summary": "Recommendation: GO. Observed risk is 0/100; evidence confidence is 100/100. No deterministic hard blocker was found. Review the cited findings and checklist before making a deployment decision.",
+      "findings": [
+        {
+          "id": "188c5360-c569-50cc-83c3-4fd3ba19a23d",
+          "rule": "changes_collected",
+          "category": "complexity",
+          "kind": "positive",
+          "title": "Change comparison collected",
+          "explanation": "Collected 1 changed files for the resolved commit range.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["fc08d10f-8ac5-5605-91b2-2a4698a0bf44"]
+        },
+        {
+          "id": "b2fa0f72-a212-580c-881e-6c50554a9cf5",
+          "rule": "required_passed",
+          "category": "tests",
+          "kind": "positive",
+          "title": "Required checks passed",
+          "explanation": "All known required checks succeeded on the exact target SHA.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": [
+            "b451cd70-5c77-58f3-8c1a-5a9164ec831d",
+            "ddafd4a7-9ab6-5ad2-9682-e9fd69cdb76e"
+          ]
+        },
+        {
+          "id": "99555725-ce3d-53ce-9485-97b9de9d4c25",
+          "rule": "reviews_approved",
+          "category": "code_review",
+          "kind": "positive",
+          "title": "Related PRs are approved",
+          "explanation": "All collected related PRs have an approved review state.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["e6098e21-061f-58c4-8a06-b06d639e07f3"]
+        },
+        {
+          "id": "2ea723bd-8980-5be5-a103-1740bf7e8fbc",
+          "rule": "rollback_found",
+          "category": "documentation",
+          "kind": "positive",
+          "title": "Rollback instructions available",
+          "explanation": "Relevant rollback guidance was retrieved; this is guidance, not proof of execution.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["7ff0b0ef-1278-5052-9eec-dcc888053a73"]
+        }
+      ],
+      "checklist": []
+    },
+    "evidence": [
+      {
+        "id": "fc08d10f-8ac5-5605-91b2-2a4698a0bf44",
+        "source_type": "comparison",
+        "title": "Release comparison",
+        "excerpt": "src/cart.py: +8 -3",
+        "locator": "Fixture v1 \u00b7 compare aaaaaaa\u2026 \u2192 bbbbbbb\u2026",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "43c929ec-ded7-5c7e-9e48-38adab20cab2",
+        "source_type": "collection",
+        "title": "Review collection",
+        "excerpt": "One related PR and its current review collected.",
+        "locator": "Fixture v1 \u00b7 reviews",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "e598f7c7-f3b3-5bca-8451-67fb51d726b4",
+        "source_type": "collection",
+        "title": "Required-check collection",
+        "excerpt": "Required checks: unit, integration. Results belong to the target SHA.",
+        "locator": "Fixture v1 \u00b7 checks",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "d2c7e283-5473-50e5-aebd-478d2fb37b76",
+        "source_type": "collection",
+        "title": "Runbook retrieval",
+        "excerpt": "Deployment runbook v1 indexed; rollback and backup guidance retrieved.",
+        "locator": "Fixture v1 \u00b7 knowledge search",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "e6098e21-061f-58c4-8a06-b06d639e07f3",
+        "source_type": "review",
+        "title": "PR #42 \u00b7 Review",
+        "excerpt": "Current review state: APPROVED. No unresolved change requests.",
+        "locator": "Fixture v1 \u00b7 pull/42/reviews",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "b451cd70-5c77-58f3-8c1a-5a9164ec831d",
+        "source_type": "check",
+        "title": "Unit tests \u00b7 success",
+        "excerpt": "name=unit; conclusion=success; attempt=1; head_sha=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "locator": "Fixture v1 \u00b7 checks/unit/attempt/1",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "ddafd4a7-9ab6-5ad2-9682-e9fd69cdb76e",
+        "source_type": "check",
+        "title": "Integration tests \u00b7 success",
+        "excerpt": "name=integration; conclusion=success; attempt=1; head_sha=bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "locator": "Fixture v1 \u00b7 checks/integration/attempt/1",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "7ff0b0ef-1278-5052-9eec-dcc888053a73",
+        "source_type": "runbook",
+        "title": "Deployment runbook \u00b7 Rollback",
+        "excerpt": "If the release fails health checks, redeploy the previous application version and verify recovery.",
+        "locator": "Fixture v1 \u00b7 Deployment runbook v1 / Rollback",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "e5def334-47f8-5ce5-99ed-8dbfd1145dea",
+        "source_type": "runbook",
+        "title": "Deployment runbook \u00b7 Database changes",
+        "excerpt": "Before applying a database migration, verify a recent backup and test the migration in staging.",
+        "locator": "Fixture v1 \u00b7 Deployment runbook v1 / Database changes",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      }
+    ]
+  },
+  "failed_ci": {
+    "id": "4cb3fc04-2f08-5b28-b0d5-209672e12a57",
+    "release_candidate_id": "ed50d2e5-7db4-57d4-ae30-84bac58db318",
+    "service_name": "Checkout API",
+    "scenario": "failed_ci",
+    "source_mode": "demo",
+    "state": "COMPLETED",
+    "base_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "head_sha": "cccccccccccccccccccccccccccccccccccccccc",
+    "created_at": "2026-09-06T00:00:00Z",
+    "decision": {
+      "policy_version": "readiness-v1",
+      "recommendation": "NO_GO",
+      "risk_score": 48,
+      "confidence_score": 100,
+      "category_scores": {
+        "tests": 40,
+        "code_review": 0,
+        "complexity": 8,
+        "documentation": 0
+      },
+      "category_caps": {
+        "tests": 40,
+        "code_review": 25,
+        "complexity": 20,
+        "documentation": 15
+      },
+      "confidence_components": [
+        {
+          "category": "changes",
+          "weight": 25,
+          "earned": 25,
+          "reason": "Complete comparison collected."
+        },
+        {
+          "category": "reviews",
+          "weight": 20,
+          "earned": 20,
+          "reason": "PR/review collection complete."
+        },
+        {
+          "category": "ci",
+          "weight": 30,
+          "earned": 30,
+          "reason": "Required-check policy and target results collected."
+        },
+        {
+          "category": "runbooks",
+          "weight": 25,
+          "earned": 25,
+          "reason": "Relevant runbook excerpts retrieved."
+        }
+      ],
+      "summary": "Recommendation: NO_GO. Observed risk is 48/100; evidence confidence is 100/100. A hard blocker prevents release. Review the cited findings and checklist before making a deployment decision.",
+      "findings": [
+        {
+          "id": "ed8839b4-ffed-5fda-b71a-17c8eb9c1812",
+          "rule": "required_failed:integration",
+          "category": "tests",
+          "kind": "blocker",
+          "title": "Required check failed: integration",
+          "explanation": "The latest collected attempt failed. A required CI failure always blocks release.",
+          "remediation": "Fix and rerun integration on the target SHA.",
+          "points": 40,
+          "evidence_ids": ["142ebe92-dd80-50ad-9693-64afd649dfe0"]
+        },
+        {
+          "id": "d31cb825-9d8e-5f6a-a004-d5b51818e871",
+          "rule": "migration",
+          "category": "complexity",
+          "kind": "warning",
+          "title": "Database migration detected",
+          "explanation": "Heuristic: a changed path contains migration or ends in .sql.",
+          "remediation": "Review migration safety, backups, and rollback steps.",
+          "points": 8,
+          "evidence_ids": ["89d75abb-d1de-523e-890c-dab7d38a91ed"]
+        },
+        {
+          "id": "d6eec6b6-2b9b-53bb-9c58-3ecfedd3bcae",
+          "rule": "changes_collected",
+          "category": "complexity",
+          "kind": "positive",
+          "title": "Change comparison collected",
+          "explanation": "Collected 1 changed files for the resolved commit range.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["89d75abb-d1de-523e-890c-dab7d38a91ed"]
+        },
+        {
+          "id": "47b0c0bd-7e62-55ec-b8ae-16a303c10bf7",
+          "rule": "migration_guidance_found",
+          "category": "documentation",
+          "kind": "positive",
+          "title": "Migration guidance available",
+          "explanation": "Backup guidance was retrieved. Its presence does not prove a backup was completed.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["4eaa16dc-aff9-50b4-ab1b-244e3e005cfd"]
+        },
+        {
+          "id": "4e3b3882-0f9c-5338-94b3-b72935c6a92b",
+          "rule": "reviews_approved",
+          "category": "code_review",
+          "kind": "positive",
+          "title": "Related PRs are approved",
+          "explanation": "All collected related PRs have an approved review state.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["7649b8c1-d361-5f65-ad96-35547a0a6b2c"]
+        },
+        {
+          "id": "cae44eb8-0944-5694-983d-40c35e25bce2",
+          "rule": "rollback_found",
+          "category": "documentation",
+          "kind": "positive",
+          "title": "Rollback instructions available",
+          "explanation": "Relevant rollback guidance was retrieved; this is guidance, not proof of execution.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["fd8c25f4-3f7c-5d2d-bf8e-2ed9f2b45082"]
+        }
+      ],
+      "checklist": [
+        {
+          "id": "84046d51-affb-54f0-a413-f474a6878cbc",
+          "finding_id": "ed8839b4-ffed-5fda-b71a-17c8eb9c1812",
+          "title": "Fix and rerun integration on the target SHA.",
+          "required": true,
+          "status": "open"
+        },
+        {
+          "id": "34bb29e7-aab4-5180-87a7-7c95d2539a28",
+          "finding_id": "d31cb825-9d8e-5f6a-a004-d5b51818e871",
+          "title": "Review migration safety, backups, and rollback steps.",
+          "required": false,
+          "status": "open"
+        }
+      ]
+    },
+    "evidence": [
+      {
+        "id": "89d75abb-d1de-523e-890c-dab7d38a91ed",
+        "source_type": "comparison",
+        "title": "Release comparison",
+        "excerpt": "migrations/004_add_index.sql: +12 -0",
+        "locator": "Fixture v1 \u00b7 compare aaaaaaa\u2026 \u2192 ccccccc\u2026",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "d10a0912-f532-569d-9803-a0fe7117d148",
+        "source_type": "collection",
+        "title": "Review collection",
+        "excerpt": "One related PR and its current review collected.",
+        "locator": "Fixture v1 \u00b7 reviews",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "7bc7dff5-62a7-5145-a9b9-4c1bd1e1199d",
+        "source_type": "collection",
+        "title": "Required-check collection",
+        "excerpt": "Required checks: unit, integration. Results belong to the target SHA.",
+        "locator": "Fixture v1 \u00b7 checks",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "4bd97ff6-7528-57c4-93dd-4b42292d0ff4",
+        "source_type": "collection",
+        "title": "Runbook retrieval",
+        "excerpt": "Deployment runbook v1 indexed; rollback and backup guidance retrieved.",
+        "locator": "Fixture v1 \u00b7 knowledge search",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "7649b8c1-d361-5f65-ad96-35547a0a6b2c",
+        "source_type": "review",
+        "title": "PR #42 \u00b7 Review",
+        "excerpt": "Current review state: APPROVED. No unresolved change requests.",
+        "locator": "Fixture v1 \u00b7 pull/42/reviews",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "3fa20608-cee0-5f3e-ad23-8351062aeddd",
+        "source_type": "check",
+        "title": "Unit tests \u00b7 success",
+        "excerpt": "name=unit; conclusion=success; attempt=1; head_sha=cccccccccccccccccccccccccccccccccccccccc",
+        "locator": "Fixture v1 \u00b7 checks/unit/attempt/1",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "142ebe92-dd80-50ad-9693-64afd649dfe0",
+        "source_type": "check",
+        "title": "Integration tests \u00b7 failure",
+        "excerpt": "name=integration; conclusion=failure; attempt=1; head_sha=cccccccccccccccccccccccccccccccccccccccc",
+        "locator": "Fixture v1 \u00b7 checks/integration/attempt/1",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "fd8c25f4-3f7c-5d2d-bf8e-2ed9f2b45082",
+        "source_type": "runbook",
+        "title": "Deployment runbook \u00b7 Rollback",
+        "excerpt": "If the release fails health checks, redeploy the previous application version and verify recovery.",
+        "locator": "Fixture v1 \u00b7 Deployment runbook v1 / Rollback",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "4eaa16dc-aff9-50b4-ab1b-244e3e005cfd",
+        "source_type": "runbook",
+        "title": "Deployment runbook \u00b7 Database changes",
+        "excerpt": "Before applying a database migration, verify a recent backup and test the migration in staging.",
+        "locator": "Fixture v1 \u00b7 Deployment runbook v1 / Database changes",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      }
+    ]
+  },
+  "missing_evidence": {
+    "id": "5a22e00b-9268-59b6-af22-abe17d3bb903",
+    "release_candidate_id": "0b27a556-e8da-5cc9-9f5b-84dff78335b2",
+    "service_name": "Checkout API",
+    "scenario": "missing_evidence",
+    "source_mode": "demo",
+    "state": "COMPLETED",
+    "base_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "head_sha": "dddddddddddddddddddddddddddddddddddddddd",
+    "created_at": "2026-09-06T00:00:00Z",
+    "decision": {
+      "policy_version": "readiness-v1",
+      "recommendation": "CAUTION",
+      "risk_score": 35,
+      "confidence_score": 25,
+      "category_scores": {
+        "tests": 25,
+        "code_review": 0,
+        "complexity": 0,
+        "documentation": 10
+      },
+      "category_caps": {
+        "tests": 40,
+        "code_review": 25,
+        "complexity": 20,
+        "documentation": 15
+      },
+      "confidence_components": [
+        {
+          "category": "changes",
+          "weight": 25,
+          "earned": 25,
+          "reason": "Complete comparison collected."
+        },
+        {
+          "category": "reviews",
+          "weight": 20,
+          "earned": 0,
+          "reason": "PR/review collection missing or partial."
+        },
+        {
+          "category": "ci",
+          "weight": 30,
+          "earned": 0,
+          "reason": "Required-check policy or target results incomplete."
+        },
+        {
+          "category": "runbooks",
+          "weight": 25,
+          "earned": 0,
+          "reason": "Relevant runbook evidence unavailable."
+        }
+      ],
+      "summary": "Recommendation: CAUTION. Observed risk is 35/100; evidence confidence is 25/100. No deterministic hard blocker was found. There are 5 missing-evidence signals to review.",
+      "findings": [
+        {
+          "id": "e18a49f7-9523-5def-894a-b9f5c7954c75",
+          "rule": "ci_incomplete",
+          "category": "tests",
+          "kind": "unknown",
+          "title": "CI collection is incomplete",
+          "explanation": "Missing or partial collection cannot establish that required checks passed.",
+          "remediation": "Collect all check results for the target SHA.",
+          "points": 0,
+          "evidence_ids": ["5f02f720-60a6-5a6d-8383-e2a4f885cec8"]
+        },
+        {
+          "id": "0291a6b2-80d9-5e51-9a7b-595e68d5e478",
+          "rule": "no_checks",
+          "category": "tests",
+          "kind": "unknown",
+          "title": "No target CI checks found",
+          "explanation": "An empty check list is missing evidence, not a passing test suite.",
+          "remediation": "Run and collect the required CI checks.",
+          "points": 25,
+          "evidence_ids": ["5f02f720-60a6-5a6d-8383-e2a4f885cec8"]
+        },
+        {
+          "id": "2df0ac20-6fbb-5a5e-ab16-71479a2e1e9e",
+          "rule": "no_runbook",
+          "category": "documentation",
+          "kind": "unknown",
+          "title": "No runbook indexed",
+          "explanation": "Deployment instructions are unavailable for this release.",
+          "remediation": "Upload and index a deployment runbook.",
+          "points": 10,
+          "evidence_ids": ["361f5593-8701-58c9-85e8-36edde5808ac"]
+        },
+        {
+          "id": "b82b75df-9cee-5444-a879-f0296a037b84",
+          "rule": "required_policy_unknown",
+          "category": "tests",
+          "kind": "unknown",
+          "title": "Required-check policy is unknown",
+          "explanation": "An explicit, nonempty list of required checks is needed before GO is allowed.",
+          "remediation": "Identify the repository's required checks.",
+          "points": 0,
+          "evidence_ids": ["5f02f720-60a6-5a6d-8383-e2a4f885cec8"]
+        },
+        {
+          "id": "67cb2765-6a2f-52b3-a369-ca54f8e84a0f",
+          "rule": "reviews_incomplete",
+          "category": "code_review",
+          "kind": "unknown",
+          "title": "Review evidence is incomplete",
+          "explanation": "Unavailable review data cannot be treated as approval.",
+          "remediation": "Collect current PR associations and review states.",
+          "points": 0,
+          "evidence_ids": ["7330f30c-03dc-56fe-8756-aba5fcef21bb"]
+        },
+        {
+          "id": "d2c84099-e862-5324-8dda-eb66c692babc",
+          "rule": "changes_collected",
+          "category": "complexity",
+          "kind": "positive",
+          "title": "Change comparison collected",
+          "explanation": "Collected 1 changed files for the resolved commit range.",
+          "remediation": null,
+          "points": 0,
+          "evidence_ids": ["030db772-25e5-5f54-9d98-d43b3211e140"]
+        }
+      ],
+      "checklist": [
+        {
+          "id": "cdb34251-1539-51a4-961e-476ce6fddf97",
+          "finding_id": "e18a49f7-9523-5def-894a-b9f5c7954c75",
+          "title": "Collect all check results for the target SHA.",
+          "required": true,
+          "status": "open"
+        },
+        {
+          "id": "5ebd357d-4930-59cd-96e3-f50ae5caaf89",
+          "finding_id": "0291a6b2-80d9-5e51-9a7b-595e68d5e478",
+          "title": "Run and collect the required CI checks.",
+          "required": true,
+          "status": "open"
+        },
+        {
+          "id": "d2879e1c-7ac9-5e7e-b99d-58b53fea804d",
+          "finding_id": "2df0ac20-6fbb-5a5e-ab16-71479a2e1e9e",
+          "title": "Upload and index a deployment runbook.",
+          "required": true,
+          "status": "open"
+        },
+        {
+          "id": "442732c9-a813-59db-b5da-869bc2733d02",
+          "finding_id": "b82b75df-9cee-5444-a879-f0296a037b84",
+          "title": "Identify the repository's required checks.",
+          "required": true,
+          "status": "open"
+        },
+        {
+          "id": "5e876e67-981b-5747-a3d1-e98c67560303",
+          "finding_id": "67cb2765-6a2f-52b3-a369-ca54f8e84a0f",
+          "title": "Collect current PR associations and review states.",
+          "required": true,
+          "status": "open"
+        }
+      ]
+    },
+    "evidence": [
+      {
+        "id": "030db772-25e5-5f54-9d98-d43b3211e140",
+        "source_type": "comparison",
+        "title": "Release comparison",
+        "excerpt": "src/cart.py: +8 -3",
+        "locator": "Fixture v1 \u00b7 compare aaaaaaa\u2026 \u2192 ddddddd\u2026",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "7330f30c-03dc-56fe-8756-aba5fcef21bb",
+        "source_type": "collection",
+        "title": "Review collection",
+        "excerpt": "Review provider unavailable; no approval inferred.",
+        "locator": "Fixture v1 \u00b7 reviews",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "5f02f720-60a6-5a6d-8383-e2a4f885cec8",
+        "source_type": "collection",
+        "title": "Required-check collection",
+        "excerpt": "CI results and required-check policy are unavailable.",
+        "locator": "Fixture v1 \u00b7 checks",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      },
+      {
+        "id": "361f5593-8701-58c9-85e8-36edde5808ac",
+        "source_type": "collection",
+        "title": "Runbook retrieval",
+        "excerpt": "No runbook indexed or retrieved.",
+        "locator": "Fixture v1 \u00b7 knowledge search",
+        "url": null,
+        "captured_at": "2026-09-06T00:00:00Z"
+      }
+    ]
+  }
+}

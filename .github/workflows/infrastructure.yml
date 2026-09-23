@@ -1,0 +1,16 @@
+name: Infrastructure validation
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.12'
+      - run: uv sync --project backend --frozen
+      - run: python3 infrastructure/aws/generate.py
+      - run: git diff --exit-code -- infrastructure/aws/stack.json
+      - run: backend/.venv/bin/cfn-lint infrastructure/aws/stack.json

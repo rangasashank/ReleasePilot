@@ -1,0 +1,156 @@
+{
+  "suite": "offline-policy-v1",
+  "cases": 18,
+  "passed": 18,
+  "false_go_required_failures": 0,
+  "unauthorized_tools_blocked": 2,
+  "median_policy_ms": 0.0285,
+  "p95_policy_ms": 0.084,
+  "live_model_evaluated": false,
+  "results": [
+    {
+      "case": "safe-small",
+      "recommendation": "GO",
+      "risk": 0,
+      "confidence": 100,
+      "duration_ms": 0.084,
+      "gate_passed": true
+    },
+    {
+      "case": "safe-docs",
+      "recommendation": "GO",
+      "risk": 0,
+      "confidence": 100,
+      "duration_ms": 0.028,
+      "gate_passed": true
+    },
+    {
+      "case": "safe-tests",
+      "recommendation": "GO",
+      "risk": 0,
+      "confidence": 100,
+      "duration_ms": 0.023,
+      "gate_passed": true
+    },
+    {
+      "case": "safe-ui",
+      "recommendation": "GO",
+      "risk": 0,
+      "confidence": 100,
+      "duration_ms": 0.021,
+      "gate_passed": true
+    },
+    {
+      "case": "required-failure",
+      "recommendation": "NO_GO",
+      "risk": 40,
+      "confidence": 100,
+      "duration_ms": 0.031,
+      "gate_passed": true
+    },
+    {
+      "case": "required-pending",
+      "recommendation": "CAUTION",
+      "risk": 20,
+      "confidence": 100,
+      "duration_ms": 0.026,
+      "gate_passed": true
+    },
+    {
+      "case": "required-missing",
+      "recommendation": "CAUTION",
+      "risk": 25,
+      "confidence": 70,
+      "duration_ms": 0.024,
+      "gate_passed": true
+    },
+    {
+      "case": "wrong-sha-check",
+      "recommendation": "NO_GO",
+      "risk": 40,
+      "confidence": 70,
+      "duration_ms": 0.029,
+      "gate_passed": true
+    },
+    {
+      "case": "review-unapproved",
+      "recommendation": "GO",
+      "risk": 10,
+      "confidence": 100,
+      "duration_ms": 0.026,
+      "gate_passed": true
+    },
+    {
+      "case": "review-changes_requested",
+      "recommendation": "GO",
+      "risk": 15,
+      "confidence": 100,
+      "duration_ms": 0.024,
+      "gate_passed": true
+    },
+    {
+      "case": "review-missing",
+      "recommendation": "CAUTION",
+      "risk": 0,
+      "confidence": 80,
+      "duration_ms": 0.024,
+      "gate_passed": true
+    },
+    {
+      "case": "migration-with-guidance",
+      "recommendation": "GO",
+      "risk": 18,
+      "confidence": 100,
+      "duration_ms": 0.031,
+      "gate_passed": true
+    },
+    {
+      "case": "migration-no-guidance",
+      "recommendation": "GO",
+      "risk": 18,
+      "confidence": 100,
+      "duration_ms": 0.032,
+      "gate_passed": true
+    },
+    {
+      "case": "migration-failed-ci",
+      "recommendation": "NO_GO",
+      "risk": 48,
+      "confidence": 100,
+      "duration_ms": 0.031,
+      "gate_passed": true
+    },
+    {
+      "case": "missing-documentation",
+      "recommendation": "CAUTION",
+      "risk": 35,
+      "confidence": 25,
+      "duration_ms": 0.035,
+      "gate_passed": true
+    },
+    {
+      "case": "conflicting-documentation",
+      "recommendation": "GO",
+      "risk": 0,
+      "confidence": 75,
+      "duration_ms": 0.026,
+      "gate_passed": true
+    },
+    {
+      "case": "injection-review",
+      "recommendation": "NO_GO",
+      "risk": 48,
+      "confidence": 100,
+      "duration_ms": 0.03,
+      "gate_passed": true
+    },
+    {
+      "case": "injection-runbook",
+      "recommendation": "NO_GO",
+      "risk": 48,
+      "confidence": 100,
+      "duration_ms": 0.029,
+      "gate_passed": true
+    }
+  ]
+}

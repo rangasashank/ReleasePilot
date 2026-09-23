@@ -1,0 +1,91 @@
+name: releasepilot
+x-api-environment: &api-environment
+  DATABASE_URL: postgresql+psycopg://releasepilot:${POSTGRES_PASSWORD:-releasepilot-local-only}@postgres:5432/releasepilot
+  APP_ORIGIN: http://localhost:3000
+  COOKIE_SECURE: ${COOKIE_SECURE:-false}
+  DEMO_EMAIL: ${DEMO_EMAIL:-demo@releasepilot.local}
+  INTERNAL_SECRET: ${INTERNAL_SECRET:?Run python3 scripts/configure-local.py first}
+  GITHUB_WEBHOOK_SECRET: ${GITHUB_WEBHOOK_SECRET:-}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  LLM_MODEL: ${LLM_MODEL:-gpt-4.1-mini}
+  AGENT_TIMEOUT_SECONDS: ${AGENT_TIMEOUT_SECONDS:-120}
+  AGENT_TOKEN_BUDGET: ${AGENT_TOKEN_BUDGET:-32000}
+  AGENT_COST_BUDGET_USD: ${AGENT_COST_BUDGET_USD:-0.06}
+  MODEL_MAX_USD_PER_MILLION_TOKENS: ${MODEL_MAX_USD_PER_MILLION_TOKENS:-1.6}
+  EMBEDDING_MODEL: ${EMBEDDING_MODEL:-text-embedding-3-small}
+  GITHUB_APP_ID: ${GITHUB_APP_ID:-}
+  GITHUB_APP_SLUG: ${GITHUB_APP_SLUG:-}
+  GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
+  GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}
+  GITHUB_APP_PRIVATE_KEY_FILE: ${GITHUB_APP_PRIVATE_KEY_FILE:-}
+  REDIS_URL: redis://redis:6379/0
+  MCP_URL: http://mcp:8001/mcp
+  LOCAL_OBJECT_DIR: /tmp/objects
+  DEMO_PASSWORD: ${DEMO_PASSWORD:-local-demo-change-me}
+services:
+  postgres:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_DB: releasepilot
+      POSTGRES_USER: releasepilot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-releasepilot-local-only}
+    ports: ["127.0.0.1:5432:5432"]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U releasepilot -d releasepilot"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+  init:
+    build: ./backend
+    environment: *api-environment
+    command: ["sh", "-c", "alembic upgrade head && python -m app.seed"]
+    depends_on:
+      postgres: {condition: service_healthy}
+    restart: "no"
+    healthcheck: {disable: true}
+  api:
+    build: ./backend
+    environment: *api-environment
+    ports: ["127.0.0.1:8000:8000"]
+    volumes: ["objects:/tmp/objects", "./.secrets:/run/secrets:ro"]
+    depends_on:
+      init: {condition: service_completed_successfully}
+  redis:
+    image: redis:7.4-alpine
+    command: ["redis-server", "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  mcp:
+    build: ./backend
+    environment: *api-environment
+    command: ["uvicorn", "app.mcp_tools.server:app", "--host", "0.0.0.0", "--port", "8001"]
+    volumes: ["objects:/tmp/objects", "./.secrets:/run/secrets:ro"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    depends_on:
+      init: {condition: service_completed_successfully}
+  worker:
+    build: ./backend
+    environment: *api-environment
+    command: ["python", "-m", "app.jobs.worker"]
+    volumes: ["objects:/tmp/objects", "./.secrets:/run/secrets:ro"]
+    healthcheck: {disable: true}
+    restart: unless-stopped
+    depends_on:
+      mcp: {condition: service_healthy}
+      redis: {condition: service_healthy}
+  frontend:
+    build: ./frontend
+    ports: ["127.0.0.1:3000:3000"]
+    depends_on:
+      api: {condition: service_healthy}
+volumes:
+  postgres-data:
+  objects:
